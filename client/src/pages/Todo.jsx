@@ -22,6 +22,7 @@ const Todo = () => {
   } = useQuery({
     queryKey: ["todos"],
     queryFn: getTodos,
+    staleTime: 60 * 1000,
   });
 
   if (isLoading) {

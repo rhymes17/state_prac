@@ -48,6 +48,7 @@ const Home = () => {
   } = useQuery({
     queryKey: ["products"],
     queryFn: getAllProducts,
+    staleTime: 60 * 10 * 1000,
   });
 
   if (isLoading)
