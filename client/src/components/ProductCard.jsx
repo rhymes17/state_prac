@@ -33,7 +33,7 @@ const ProductCard = ({ product }) => {
         <h1 className="text-gray-300">{category}</h1>
         <IoBagAdd
           onClick={() =>
-            addItemToCart({ id, title, price, imgUrl, quantity: 1 })
+            addItemToCart({ id, title, brand, price, imgUrl, quantity: 1 })
           }
           className="text-2xl cursor-pointer"
         />
