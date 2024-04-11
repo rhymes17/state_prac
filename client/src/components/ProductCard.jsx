@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
   const { id, title, description, price, brand, category, images } = product;
   const imgUrl = images[0];
 
-  // const { addItemToCart, count } = useContext(cartContext);
+  const { addItemToCart } = useContext(cartContext);
 
   return (
     <div className="w-[90%] mx-auto shadow-xl rounded-2xl py-7 bg-[#FFFFFF]">
@@ -32,9 +32,9 @@ const ProductCard = ({ product }) => {
       <div className="w-[80%] mx-auto items-center flex justify-between pt-3">
         <h1 className="text-gray-300">{category}</h1>
         <IoBagAdd
-          // onClick={() =>
-          //   addItemToCart({ id, title, price, imgUrl, quantity: 1 })
-          // }
+          onClick={() =>
+            addItemToCart({ id, title, price, imgUrl, quantity: 1 })
+          }
           className="text-2xl cursor-pointer"
         />
       </div>

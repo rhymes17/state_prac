@@ -10,7 +10,7 @@ const Footer = () => {
   const location = useLocation();
   // console.log(location.pathname);
   return (
-    <div className="w-[80%] h-[55px] mx-auto rounded-xl text-white bg-[#192028] border-black border-2">
+    <div className="w-[80%] h-[55px] mx-auto rounded-xl text-white bg-[#192028] ">
       <div className="flex h-full w-[80%] mx-auto justify-between items-center">
         <Link to="/">
           <GoHome className="text-2xl cursor-pointer" />
