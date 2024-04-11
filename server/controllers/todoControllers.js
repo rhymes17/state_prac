@@ -4,7 +4,7 @@ import { Todo } from "../models/todoModel.js"
 // @desc    Get all todos
 // @route   GET "/api/todo/"
 const getAllTodos = asyncHandler(async (req, res) => {
-    const getTodos = await Todo.find()
+    const getTodos = await Todo.find().sort({ createdAt : -1 })
 
     if(getTodos){
         res.status(201).json({message: "All todos fetched", data: getTodos})
