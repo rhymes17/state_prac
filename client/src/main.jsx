@@ -9,11 +9,11 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Cart from "./components/Cart.jsx";
 
 // React Query imports
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CartProvider } from "./context/cartContext.jsx";
+import Cart from "./pages/Cart.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
