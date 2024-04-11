@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CgMenuMotion } from "react-icons/cg";
 import { BsHandbagFill } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { GoHome } from "react-icons/go";
+import { cartContext } from "../context/cartContext";
 
 const Header = () => {
   const location = useLocation();
+
+  const { cartProducts } = useContext(cartContext);
 
   return (
     <div className="w-[90%] mx-auto py-5">
@@ -20,9 +23,14 @@ const Header = () => {
       ) : (
         <div className="flex justify-between">
           <CgMenuMotion className="text-2xl" />
-          <Link to="/cart">
-            <BsHandbagFill className="text-2xl" />
-          </Link>
+          <div className="relative">
+            <Link to="/cart">
+              <BsHandbagFill className="text-2xl" />
+            </Link>
+            {cartProducts.length > 0 && (
+              <div className="absolute top-[-3px] right-[-3px] h-[10px] w-[10px] bg-red-500 rounded-full"></div>
+            )}
+          </div>
         </div>
       )}
     </div>

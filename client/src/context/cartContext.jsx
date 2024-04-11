@@ -33,8 +33,13 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const clearCart = () => {
+    setCartProducts([]);
+    localStorage.removeItem("cart");
+  };
+
   return (
-    <cartContext.Provider value={{ cartProducts, addItemToCart }}>
+    <cartContext.Provider value={{ cartProducts, addItemToCart, clearCart }}>
       {children}
     </cartContext.Provider>
   );
