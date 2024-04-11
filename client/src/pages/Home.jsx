@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
+import ProductWrapper from "../components/ProductWrapper";
 
 const Home = () => {
   // Fetch products logic
