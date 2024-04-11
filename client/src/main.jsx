@@ -12,6 +12,9 @@ import {
 import Cart from "./components/Cart.jsx";
 import CartLayout from "./components/CartLayout.jsx";
 
+// React Query imports
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -23,8 +26,13 @@ const router = createBrowserRouter(
   )
 );
 
+// Client Query
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
