@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
   const imgUrl = images[0];
 
   return (
-    <div className="w-[80%] mx-auto shadow-xl rounded-2xl py-7 bg-[#FFFFFF]">
+    <div className="w-[90%] mx-auto shadow-xl rounded-2xl py-7 bg-[#FFFFFF]">
       {/* Image*/}
       <div className="flex justify-center items-center">
         <img
