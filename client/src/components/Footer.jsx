@@ -24,9 +24,11 @@ const Footer = () => {
           </Link>
         </div>
       ) : location.pathname === "/addTodo" ? (
-        <div className="h-full items-center flex justify-center ">
-          <h1 className="text-xl font-[400]">Todos App</h1>
-        </div>
+        <Link to="/">
+          <div className="h-full items-center flex justify-center cursor-pointer">
+            <h1 className="text-xl font-[400]">Back to Cart</h1>
+          </div>
+        </Link>
       ) : (
         <div className="flex h-full w-[80%] mx-auto justify-between items-center">
           <Link to="/">

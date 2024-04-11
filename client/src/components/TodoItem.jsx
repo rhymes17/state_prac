@@ -6,7 +6,7 @@ const TodoItem = ({ todoItem }) => {
 
   return (
     <div className="flex justify-between w-[90%] mx-auto items-center">
-      <div className="">
+      <div className="cursor-pointer">
         <FaRegCircle className="" />
       </div>
 
