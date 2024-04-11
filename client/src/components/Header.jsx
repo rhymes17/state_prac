@@ -20,6 +20,14 @@ const Header = () => {
           <h1 className="text-xl font-semibold">Cart</h1>
           <div></div>
         </div>
+      ) : location.pathname === "/todo" ? (
+        <div className="flex justify-between w-[93%]  mx-auto items-center">
+          <Link to="/">
+            <GoHome className="text-3xl" />
+          </Link>
+          <h1 className="text-xl font-semibold">Todos</h1>
+          <div className=""></div>
+        </div>
       ) : (
         <div className="flex justify-between">
           <CgMenuMotion className="text-2xl" />
