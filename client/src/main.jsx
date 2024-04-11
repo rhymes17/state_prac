@@ -16,6 +16,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CartProvider } from "./context/cartContext.jsx";
 import Cart from "./pages/Cart.jsx";
 import Todo from "./pages/Todo.jsx";
+import AddTodo from "./components/AddTodo.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/todo" element={<Todo />} />
+        <Route path="/addTodo" element={<AddTodo />} />
       </Route>
     </>
   )

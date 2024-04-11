@@ -28,6 +28,8 @@ const Header = () => {
           <h1 className="text-xl font-semibold">Todos</h1>
           <div className=""></div>
         </div>
+      ) : location.pathname === "/addTodo" ? (
+        <div></div>
       ) : (
         <div className="flex justify-between">
           <CgMenuMotion className="text-2xl" />

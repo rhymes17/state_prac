@@ -19,7 +19,13 @@ const Footer = () => {
       ) : location.pathname === "/todo" ? (
         <div className="h-full items-center flex justify-center gap-3 cursor-pointer">
           <CgAddR className="text-2xl" />
-          <h1 className="text-xl font-[400]">Create a new Todo</h1>
+          <Link to="/addTodo">
+            <h1 className="text-xl font-[400]">Create a new Todo</h1>
+          </Link>
+        </div>
+      ) : location.pathname === "/addTodo" ? (
+        <div className="h-full items-center flex justify-center ">
+          <h1 className="text-xl font-[400]">Todos App</h1>
         </div>
       ) : (
         <div className="flex h-full w-[80%] mx-auto justify-between items-center">
