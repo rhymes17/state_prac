@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addAllTodos,
   filterVisibleTodos,
-  getAllTodos,
   getAllVisibleTodos,
 } from "../slices/todoSlice";
 
@@ -49,9 +48,13 @@ const Todo = () => {
 
   return (
     <div className="my-5 h-[65vh] overflow-y-scroll no-scrollbar flex flex-col gap-8 w-[90%] mx-auto">
-      {todos?.map((todoItem) => (
-        <TodoItem key={todoItem._id} todoItem={todoItem} />
-      ))}
+      {todos.length === 0 ? (
+        <h1>No todos yet, Kindly create new.</h1>
+      ) : (
+        todos?.map((todoItem) => (
+          <TodoItem key={todoItem._id} todoItem={todoItem} />
+        ))
+      )}
     </div>
   );
 };
