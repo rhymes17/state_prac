@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { IoBagAdd } from "react-icons/io5";
-import { cartContext } from "../context/cartContext";
+import { addToCart } from "../slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductCard = ({ product }) => {
   // Product data
   const { id, title, description, price, brand, category, images } = product;
   const imgUrl = images[0];
 
-  const { addItemToCart } = useContext(cartContext);
+  const dispatch = useDispatch();
 
   return (
     <div className="w-[90%] mx-auto shadow-xl rounded-2xl py-7 bg-[#FFFFFF]">
@@ -33,7 +34,9 @@ const ProductCard = ({ product }) => {
         <h1 className="text-gray-300">{category}</h1>
         <IoBagAdd
           onClick={() =>
-            addItemToCart({ id, title, brand, price, imgUrl, quantity: 1 })
+            dispatch(
+              addToCart({ id, title, brand, price, imgUrl, quantity: 1 })
+            )
           }
           className="text-2xl cursor-pointer"
         />

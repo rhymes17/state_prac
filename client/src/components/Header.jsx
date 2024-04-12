@@ -3,12 +3,13 @@ import { CgMenuMotion } from "react-icons/cg";
 import { BsHandbagFill } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { GoHome } from "react-icons/go";
-import { cartContext } from "../context/cartContext";
+import { useSelector } from "react-redux";
+import { getAllItems } from "../slices/cartSlice";
 
 const Header = () => {
   const location = useLocation();
 
-  const { cartProducts } = useContext(cartContext);
+  const cartProducts = useSelector(getAllItems);
 
   return (
     <div className="w-[90%] mx-auto py-5">

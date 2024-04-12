@@ -13,15 +13,14 @@ import { Provider } from "react-redux";
 // React Query imports
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { CartProvider } from "./context/cartContext.jsx";
-
 //Component imports
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Cart from "./pages/Cart.jsx";
-import Todo from "./pages/Todo.jsx";
+// import Todo from "./pages/Todo.jsx";
 import AddTodo from "./components/AddTodo.jsx";
 import store from "./store/store.js";
+import TodoWrapper from "./components/TodoWrapper.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,7 +28,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<App />}>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/todo" element={<Todo />} />
+        <Route path="/todo" element={<TodoWrapper />} />
         <Route path="/addTodo" element={<AddTodo />} />
       </Route>
     </>
@@ -43,10 +42,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <CartProvider>
-          <RouterProvider router={router} />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </CartProvider>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false} />
       </Provider>
     </QueryClientProvider>
   </React.StrictMode>

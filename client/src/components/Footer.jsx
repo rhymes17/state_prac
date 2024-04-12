@@ -17,16 +17,15 @@ const Footer = () => {
           Procees To Checkout
         </h1>
       ) : location.pathname === "/todo" ? (
-        <div className="h-full items-center flex justify-center gap-3 cursor-pointer">
-          <CgAddR className="text-2xl" />
-          <Link to="/addTodo">
-            <h1 className="text-xl font-[400]">Create a new Todo</h1>
-          </Link>
-        </div>
-      ) : location.pathname === "/addTodo" ? (
         <Link to="/">
           <div className="h-full items-center flex justify-center cursor-pointer">
             <h1 className="text-xl font-[400]">Back to Cart</h1>
+          </div>
+        </Link>
+      ) : location.pathname === "/addTodo" ? (
+        <Link to="/todo">
+          <div className="h-full items-center flex justify-center cursor-pointer">
+            <h1 className="text-xl font-[400]">Back to Todo</h1>
           </div>
         </Link>
       ) : (

@@ -1,10 +1,15 @@
-import React, { useContext } from "react";
-import { cartContext } from "../context/cartContext";
+import React from "react";
+
 import { VscPackage } from "react-icons/vsc";
 import CartCard from "../components/CartCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllItems, resetCart } from "../slices/cartSlice";
 
 const Cart = () => {
-  const { cartProducts, clearCart } = useContext(cartContext);
+  // const { cartProducts, clearCart } = useContext(cartContext);
+  const dispatch = useDispatch();
+
+  const cartProducts = useSelector(getAllItems);
   const count = cartProducts.length;
 
   return (
@@ -13,7 +18,7 @@ const Cart = () => {
         <>
           <div className="w-[90%] mx-auto flex justify-end">
             <h1
-              onClick={() => clearCart()}
+              onClick={() => dispatch(resetCart())}
               className="shadow-xl cursor-pointer bg-red-500 text-white px-3 py-1 rounded-xl"
             >
               Clear

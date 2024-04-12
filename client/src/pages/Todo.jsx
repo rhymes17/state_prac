@@ -1,32 +1,36 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import TodoItem from "../components/TodoItem";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addAllTodos,
-  filterVisibleTodos,
-  getAllVisibleTodos,
-} from "../slices/todoSlice";
+
+import { MdOutlineAddBox } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { TodoContext } from "../context/TodoContext";
 
 const Todo = () => {
   const BASE_URL = "http://localhost:8000/api/todo";
 
-  const dispatch = useDispatch();
-
-  const todos = useSelector(getAllVisibleTodos);
+  const {
+    allTodos,
+    visibleTodos: todos,
+    filterVisibleTodos,
+    addAllTodos,
+  } = useContext(TodoContext);
 
   const getTodos = async () => {
     try {
       const res = await axios.get(`${BASE_URL}`);
       const todos = res.data.data;
-      dispatch(addAllTodos(todos));
-      dispatch(filterVisibleTodos());
+      addAllTodos(todos);
       return todos;
     } catch (error) {
       return error;
     }
   };
+
+  useEffect(() => {
+    filterVisibleTodos();
+  }, [allTodos]);
 
   const {
     data: todoItems,
@@ -35,7 +39,7 @@ const Todo = () => {
   } = useQuery({
     queryKey: ["todos"],
     queryFn: getTodos,
-    staleTime: 60 * 1000,
+    // staleTime: 60 * 1000,
   });
 
   if (isLoading) {
@@ -47,13 +51,23 @@ const Todo = () => {
   }
 
   return (
-    <div className="my-5 h-[65vh] overflow-y-scroll no-scrollbar flex flex-col gap-8 w-[90%] mx-auto">
+    <div className="my-5 flex flex-col gap-3 w-[90%] mx-auto">
+      <Link
+        to="/addTodo"
+        className="w-[60%] bg-[#192028] text-white rounded-lg gap-2 mx-auto border-[1px] border-black flex justify-center items-center py-2"
+      >
+        <MdOutlineAddBox className="text-2xl" />
+        <h1 className="font-[450]">Create a new Todo</h1>
+      </Link>
+
       {todos.length === 0 ? (
         <h1>No todos yet, Kindly create new.</h1>
       ) : (
-        todos?.map((todoItem) => (
-          <TodoItem key={todoItem._id} todoItem={todoItem} />
-        ))
+        <div className="h-[65vh] overflow-y-scroll no-scrollbar flex flex-col gap-3">
+          {todos?.map((todoItem) => (
+            <TodoItem key={todoItem._id} todoItem={todoItem} />
+          ))}
+        </div>
       )}
     </div>
   );

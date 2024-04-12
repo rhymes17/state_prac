@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { CiCircleMinus } from "react-icons/ci";
 import { IoMdAddCircle } from "react-icons/io";
-import { cartContext } from "../context/cartContext";
+import { useDispatch } from "react-redux";
+import { decrementQuantity, incrementQuantity } from "../slices/cartSlice";
 
 const CartCard = ({ product }) => {
   const { id, title, quantity, price, brand, imgUrl } = product;
 
-  const { incrementQuantity, decrementQuantity } = useContext(cartContext);
+  // const { incrementQuantity, decrementQuantity } = useContext(cartContext);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="flex justify-between items-center w-[90%] mx-auto">
@@ -27,12 +30,12 @@ const CartCard = ({ product }) => {
       {/* Quantity */}
       <div className="flex items-center justify-center gap-3">
         <CiCircleMinus
-          onClick={() => decrementQuantity(id)}
+          onClick={() => dispatch(decrementQuantity(id))}
           className="text-3xl cursor-pointer"
         />
         <h1 className="text-md">{quantity}</h1>
         <IoMdAddCircle
-          onClick={() => incrementQuantity(id)}
+          onClick={() => dispatch(incrementQuantity(id))}
           className="text-3xl cursor-pointer"
         />
       </div>
