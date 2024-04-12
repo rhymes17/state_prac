@@ -14,8 +14,7 @@ const todoSlice = createSlice({
             state.allTodos = action.payload
         },
         filterVisibleTodos: (state) => {
-            const todos = state.allTodos.filter((todo) => todo.completed === false)
-            state.visibleTodos = todos
+            state.visibleTodos = state.allTodos.filter((todo) => todo.completed === false)
         }
     }
 })
