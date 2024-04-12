@@ -34,7 +34,7 @@ const Todo = () => {
   }
 
   return (
-    <div className="my-5 h-[55vh] overflow-y-scroll no-scrollbar flex flex-col gap-8 w-[90%] mx-auto">
+    <div className="my-5 h-[65vh] overflow-y-scroll no-scrollbar flex flex-col gap-8 w-[90%] mx-auto">
       {todoItems?.map((todoItem) => (
         <TodoItem key={todoItem._id} todoItem={todoItem} />
       ))}
