@@ -6,6 +6,7 @@ import axios from "axios";
 import { MdOutlineAddBox } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { TodoContext } from "../context/TodoContext";
+import HeroWrapper from "../components/HeroWrapper";
 
 const Todo = () => {
   const BASE_URL = "http://localhost:8000/api/todo";
@@ -63,11 +64,11 @@ const Todo = () => {
       {todos.length === 0 ? (
         <h1>No todos yet, Kindly create new.</h1>
       ) : (
-        <div className="h-[65vh] overflow-y-scroll no-scrollbar flex flex-col gap-3">
+        <HeroWrapper height={58} gap={3}>
           {todos?.map((todoItem) => (
             <TodoItem key={todoItem._id} todoItem={todoItem} />
           ))}
-        </div>
+        </HeroWrapper>
       )}
     </div>
   );

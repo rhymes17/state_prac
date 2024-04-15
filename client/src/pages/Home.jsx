@@ -2,35 +2,9 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
+import HeroWrapper from "../components/HeroWrapper";
 
 const Home = () => {
-  // [Practice] : custom id query
-  // {
-  //   const getTodo = (id) => {
-  //     const {
-  //       data: todo,
-  //       isLoading,
-  //       error,
-  //     } = useQuery({
-  //       queryKey: ["todo", id],
-  //       queryFn: () => fetchTodo(id),
-  //     });
-
-  //     return { todo, isLoading, error };
-  //   };
-
-  //   const fetchTodo = async (id) => {
-  //     try {
-  //       const res = await axios.get(`https://dummyjson.com/todo/${id}`);
-  //       return res.data;
-  //     } catch (error) {
-  //       return error.message;
-  //     }
-  //   };
-
-  //   console.log(getTodo(2));
-  // }
-
   // Fetch products logic
   const getAllProducts = async () => {
     try {
@@ -69,11 +43,11 @@ const Home = () => {
       {/* TODO : Category wise */}
 
       {/* Render products */}
-      <div className="my-5 h-[55vh] overflow-y-scroll no-scrollbar flex flex-col gap-8 items-center">
+      <HeroWrapper height={70} gap={8}>
         {products?.products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-      </div>
+      </HeroWrapper>
     </div>
   );
 };
