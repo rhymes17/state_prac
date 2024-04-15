@@ -6,7 +6,7 @@ import { GoCheckCircleFill } from "react-icons/go";
 import { markTodoCompletedCall } from "../utils/axiosFunctions";
 
 const TodoItem = ({ todoItem }) => {
-  const { _id: id, userId, todo, completed, priority } = todoItem;
+  const { _id: id, todo, completed } = todoItem;
 
   const queryClient = useQueryClient();
 

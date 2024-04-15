@@ -12,7 +12,7 @@ const addTodo = async(newTodo) => {
 
 const getAllProducts = async() => {
     try {
-        const res = await axios.get(`${PRODUCTS_URL}`)
+        const res = await axios.get(`${PRODUCTS_URL}/`)
         // console.log(res)
         return res.data;
     } catch (error) {
