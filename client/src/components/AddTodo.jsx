@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import { addTodoMutate } from "../utils/queryFunctions";
+import { addTodo } from "../utils/axiosFunctions";
 
 const AddTodo = () => {
   const [todo, setTodo] = useState("");
   const [priority, setPriority] = useState("Low");
+
+  const { mutate: addTodoMutate } = useMutation({
+    mutationFn: addTodo,
+    onSuccess: () => {
+      navigate("/todos");
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+    },
+  });
 
   const handleSubmitTodo = () => {
     const newTodo = {

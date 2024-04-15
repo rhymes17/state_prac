@@ -4,7 +4,7 @@ import { VscPackage } from "react-icons/vsc";
 import CartCard from "../components/CartCard";
 import { useDispatch, useSelector } from "react-redux";
 
-import HeroWrapper from "../layout/HeroWrapper";
+import HeroWrapper from "../layout/HeroWrapper/HeroWrapper";
 import { getAllItems, resetCart } from "../store/cartSlice";
 
 const Cart = () => {
