@@ -20,7 +20,7 @@ import Cart from "./pages/Cart.jsx";
 // import Todo from "./pages/Todo.jsx";
 import AddTodo from "./components/AddTodo.jsx";
 import store from "./store/store.js";
-import TodoWrapper from "./components/TodoWrapper.jsx";
+import TodoWrapper from "./wrapper/TodoWrapper.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

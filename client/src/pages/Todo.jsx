@@ -6,7 +6,7 @@ import axios from "axios";
 import { MdOutlineAddBox } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { TodoContext } from "../context/TodoContext";
-import HeroWrapper from "../components/HeroWrapper";
+import HeroWrapper from "../layout/HeroWrapper";
 
 const Todo = () => {
   const BASE_URL = "http://localhost:8000/api/todo";

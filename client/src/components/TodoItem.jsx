@@ -3,11 +3,10 @@ import axios from "axios";
 import React from "react";
 import { FaRegCircle } from "react-icons/fa";
 import { GoCheckCircleFill } from "react-icons/go";
+import { BASE_URL } from "../constants";
 
 const TodoItem = ({ todoItem }) => {
   const { _id: id, userId, todo, completed, priority } = todoItem;
-
-  const BASE_URL = "http://localhost:8000/api/todo";
 
   const queryClient = useQueryClient();
 
