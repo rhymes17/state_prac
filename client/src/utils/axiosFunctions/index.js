@@ -20,4 +20,13 @@ const getAllProducts = async() => {
     }
 }
 
-export {addTodo, getAllProducts}
+const markTodoCompletedCall = async (todoId) => {
+    try {
+      const res = await axios.patch(`${BASE_URL}/${todoId}`);
+      return res;
+    } catch (error) {
+      return error.message;
+    }
+  };
+
+export {addTodo, getAllProducts, markTodoCompletedCall}
