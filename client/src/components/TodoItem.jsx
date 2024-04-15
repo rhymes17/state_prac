@@ -12,7 +12,7 @@ const TodoItem = ({ todoItem }) => {
 
   const markTodoCompletedCall = async (todoId) => {
     try {
-      const res = await axios.patch(`${BASE_URL}/markCompleted/${todoId}`);
+      const res = await axios.patch(`${BASE_URL}/${todoId}`);
       return res;
     } catch (error) {
       return error.message;

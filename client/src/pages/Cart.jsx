@@ -26,7 +26,7 @@ const Cart = () => {
               Clear
             </h1>
           </div>
-          <HeroWrapper height={10} gap={7}>
+          <HeroWrapper height={80} gap={5}>
             {cartProducts.map((product) => (
               <CartCard key={product.id} product={product} />
             ))}

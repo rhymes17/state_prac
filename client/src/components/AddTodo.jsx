@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { addTodo } from "../utils/axiosFunctions";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const AddTodo = () => {
   const [todo, setTodo] = useState("");
   const [priority, setPriority] = useState("Low");
 
+  const navigate = useNavigate();
+
   const { mutate: addTodoMutate } = useMutation({
     mutationFn: addTodo,
     onSuccess: () => {
-      navigate("/todos");
+      navigate("/todo");
       queryClient.invalidateQueries({ queryKey: ["todos"] });
     },
   });
