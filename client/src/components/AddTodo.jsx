@@ -2,10 +2,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../constants";
 
 const AddTodo = () => {
-  const BASE_URL = "http://localhost:8000/api/todo";
-
   const navigate = useNavigate();
 
   const [todo, setTodo] = useState("");
