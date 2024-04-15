@@ -3,11 +3,21 @@ import { BASE_URL, PRODUCTS_URL } from "../../constants"
 
 const addTodo = async(newTodo) => {
     try {
-        const res = axios.post(`${BASE_URL}/`, newTodo)
-        return res;
+        const res = await axios.post(`${BASE_URL}/`, newTodo)
+        return res.data;
     } catch (error) {
         return error.message
     }
 }
 
-export {addTodo}
+const getAllProducts = async() => {
+    try {
+        const res = await axios.get(`${PRODUCTS_URL}`)
+        // console.log(res)
+        return res.data;
+    } catch (error) {
+        return error.message
+    }
+}
+
+export {addTodo, getAllProducts}

@@ -1,20 +1,10 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import HeroWrapper from "../layout/HeroWrapper/HeroWrapper";
+import { getAllProducts } from "../utils/axiosFunctions";
 
 const Home = () => {
-  // Fetch products logic
-  const getAllProducts = async () => {
-    try {
-      const res = await axios.get("https://dummyjson.com/products");
-      return res.data;
-    } catch (error) {
-      return error.message;
-    }
-  };
-
   const {
     data: products,
     isLoading,
