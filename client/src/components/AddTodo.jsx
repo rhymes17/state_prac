@@ -1,40 +1,16 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../constants";
+import { addTodoMutate } from "../utils/queryFunctions";
 
 const AddTodo = () => {
-  const navigate = useNavigate();
-
   const [todo, setTodo] = useState("");
   const [priority, setPriority] = useState("Low");
-
-  const queryClient = useQueryClient();
-
-  const addTodo = async (newTodo) => {
-    try {
-      const res = await axios.post(`${BASE_URL}/createTodo`, newTodo);
-      return res;
-    } catch (error) {
-      return error.messsage;
-    }
-  };
-
-  const { mutate, error } = useMutation({
-    mutationFn: addTodo,
-    onSuccess: () => {
-      navigate("/todo");
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
-    },
-  });
 
   const handleSubmitTodo = () => {
     const newTodo = {
       todo,
       priority,
     };
-    mutate(newTodo);
+    addTodoMutate(newTodo);
   };
 
   return (

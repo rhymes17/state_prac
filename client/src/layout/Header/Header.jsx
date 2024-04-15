@@ -4,7 +4,7 @@ import { BsHandbagFill } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { GoHome } from "react-icons/go";
 import { useSelector } from "react-redux";
-import { getAllItems } from "../store/cartSlice";
+import { getAllItems } from "../../store/cartSlice";
 
 const Header = () => {
   const location = useLocation();

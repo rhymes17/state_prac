@@ -14,7 +14,7 @@ const getAllTodos = asyncHandler(async (req, res) => {
 })
 
 // @desc    Create a new todo
-// @route   POST "/api/todo/createTodo"
+// @route   POST "/api/todo/"
 const createTodo = asyncHandler(async (req, res) => {
     const {todo, priority} = req.body
 
@@ -36,7 +36,7 @@ const createTodo = asyncHandler(async (req, res) => {
 })
 
 // @desc    Mark as complete
-// @route   PATCH "/api/todo/markCompleted/:id"
+// @route   PATCH "/api/todo/:id"
 const markCompleted = asyncHandler(async (req, res) => {
     const {id} = req.params
 
