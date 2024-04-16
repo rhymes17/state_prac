@@ -2,7 +2,7 @@ import React from "react";
 import { IoBagAdd } from "react-icons/io5";
 
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/cartSlice";
+import { addToCart } from "../../store/cartSlice";
 
 const ProductCard = ({ product }) => {
   // Product data

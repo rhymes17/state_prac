@@ -1,16 +1,15 @@
 import React, { useContext, useEffect } from "react";
-import TodoItem from "../components/TodoItem";
+import TodoItem from "./TodoItem";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import { MdOutlineAddBox } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { TodoContext } from "../context/TodoContext";
-import HeroWrapper from "../layout/HeroWrapper/HeroWrapper";
+import { TodoContext } from "../../context/TodoContext";
+import HeroWrapper from "../../layout/HeroWrapper";
+import { BASE_URL } from "../../constants";
 
 const Todo = () => {
-  const BASE_URL = "http://localhost:8000/api/todo";
-
   const {
     allTodos,
     visibleTodos: todos,

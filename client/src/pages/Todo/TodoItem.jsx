@@ -2,8 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { FaRegCircle } from "react-icons/fa";
 import { GoCheckCircleFill } from "react-icons/go";
-
-import { markTodoCompletedCall } from "../utils/axiosFunctions";
+import { markTodoCompletedCall } from "../../utils/api";
 
 const TodoItem = ({ todoItem }) => {
   const { _id: id, todo, completed } = todoItem;

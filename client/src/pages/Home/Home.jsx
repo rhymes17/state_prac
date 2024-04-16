@@ -1,8 +1,8 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import ProductCard from "../components/ProductCard";
-import HeroWrapper from "../layout/HeroWrapper/HeroWrapper";
-import { getAllProducts } from "../utils/axiosFunctions";
+import ProductCard from "./ProductCard";
+import HeroWrapper from "../../layout/HeroWrapper/HeroWrapper";
+import { getAllProducts } from "../../utils/api";
 
 const Home = () => {
   const {
