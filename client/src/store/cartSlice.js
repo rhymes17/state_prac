@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getProducts } from "./asyncThunk";
 
-const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : {
+    isLoading: false,
+    products: [],
+    isError: false,
+    errorMessage : ""
+}
 
 const cartSlice = createSlice({
     name: "cart",
@@ -8,12 +14,12 @@ const cartSlice = createSlice({
     reducers: {
         addToCart : (state, action) => {
             const {id} = action.payload
-            const existingIndex = state.findIndex((pro) => pro.id === id)
+            const existingIndex = state.products.findIndex((pro) => pro.id === id)
 
             if(existingIndex !== -1){
-                state[existingIndex].quantity += 1;
+                state.products[existingIndex].quantity += 1;
             }else{
-                state.push(action.payload)
+                state.products.push(action.payload)
             }
 
             localStorage.setItem("cart", JSON.stringify(state))
@@ -21,36 +27,54 @@ const cartSlice = createSlice({
         incrementQuantity: (state, action) => {
             const id = action.payload
 
-            const existingIndex = state.findIndex((pro) => pro.id === id)
+            const existingIndex = state.products.findIndex((pro) => pro.id === id)
 
             if(existingIndex !== -1){
-                state[existingIndex].quantity += 1;
+                state.products[existingIndex].quantity += 1;
                 localStorage.setItem("cart", JSON.stringify(state))
             }
         },
         decrementQuantity: (state, action) => {
             const id = action.payload
 
-            const existingIndex = state.findIndex((pro) => pro.id === id)
+            const existingIndex = state.products.findIndex((pro) => pro.id === id)
 
             if(existingIndex !== -1){
-                if(state[existingIndex].quantity > 1){
-                    state[existingIndex].quantity -= 1;
+                if(state.products[existingIndex].quantity > 1){
+                    state.products[existingIndex].quantity -= 1;
 
                     localStorage.setItem("cart", JSON.stringify(state))
                 }
                 else{
-                    state = state.filter((pro) => pro.id !== id)
+                    state.products = state.products.filter((pro) => pro.id !== id)
                     localStorage.setItem("cart", state)
                     return state;
                 }
             }
         },
         resetCart : (state) => {
-            state = []
+            state = {isLoading : false, isError : false, errorMessage : "", products : []}
             localStorage.removeItem("cart")
             return state
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getProducts.pending, (state, action) => {
+            state.isLoading = true;
+            state.isError = false;
+            state.errorMessage = ""
+        })
+        .addCase(getProducts.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.products = action.payload
+            state.isError = false;
+            state.errorMessage = ""
+        })
+        .addCase(getProducts.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.errorMessage = action.payload
+        })
     }
 })
 
