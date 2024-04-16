@@ -9,7 +9,7 @@ import { getAllItems } from "../../store/cartSlice";
 const Header = () => {
   const location = useLocation();
 
-  const cartProducts = useSelector(getAllItems);
+  const { products: cartProducts } = useSelector(getAllItems);
   const isCartPage = location.pathname === "/cart";
   const isTodoPage = location.pathname === "/todo";
 

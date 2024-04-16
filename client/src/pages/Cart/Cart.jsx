@@ -11,7 +11,7 @@ const Cart = () => {
   // const { cartProducts, clearCart } = useContext(cartContext);
   const dispatch = useDispatch();
 
-  const cartProducts = useSelector(getAllItems);
+  const { products: cartProducts } = useSelector(getAllItems);
   const count = cartProducts.length;
 
   return (

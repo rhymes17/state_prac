@@ -47,15 +47,19 @@ const cartSlice = createSlice({
                 }
                 else{
                     state.products = state.products.filter((pro) => pro.id !== id)
-                    localStorage.setItem("cart", state)
+                    localStorage.setItem("cart", JSON.stringify(state))
                     return state;
                 }
             }
         },
         resetCart : (state) => {
-            state = {isLoading : false, isError : false, errorMessage : "", products : []}
+            state.isLoading = false;
+            state.isError = false;
+            state.products = [];
+            state.errorMessage = ""
+            
             localStorage.removeItem("cart")
-            return state
+        
         }
     },
     extraReducers: (builder) => {
