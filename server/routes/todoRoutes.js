@@ -4,7 +4,7 @@ import { createTodo, getAllTodos, markCompleted } from "../controllers/todoContr
 const router = express.Router()
 
 router.get("/", getAllTodos)
-router.post("/createTodo", createTodo)
-router.patch("/markCompleted/:id", markCompleted)
+router.post("/", createTodo)
+router.patch("/:id", markCompleted)
 
 export default router

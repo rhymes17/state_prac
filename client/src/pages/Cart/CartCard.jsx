@@ -2,12 +2,10 @@ import React from "react";
 import { CiCircleMinus } from "react-icons/ci";
 import { IoMdAddCircle } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { decrementQuantity, incrementQuantity } from "../slices/cartSlice";
+import { decrementQuantity, incrementQuantity } from "../../store/cartSlice";
 
 const CartCard = ({ product }) => {
   const { id, title, quantity, price, brand, imgUrl } = product;
-
-  // const { incrementQuantity, decrementQuantity } = useContext(cartContext);
 
   const dispatch = useDispatch();
 

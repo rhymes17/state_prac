@@ -1,24 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import React from "react";
 import { FaRegCircle } from "react-icons/fa";
 import { GoCheckCircleFill } from "react-icons/go";
+import { markTodoCompletedCall } from "../../utils/api";
 
 const TodoItem = ({ todoItem }) => {
-  const { _id: id, userId, todo, completed, priority } = todoItem;
-
-  const BASE_URL = "http://localhost:8000/api/todo";
+  const { _id: id, todo, completed } = todoItem;
 
   const queryClient = useQueryClient();
-
-  const markTodoCompletedCall = async (todoId) => {
-    try {
-      const res = await axios.patch(`${BASE_URL}/markCompleted/${todoId}`);
-      return res;
-    } catch (error) {
-      return error.message;
-    }
-  };
 
   const { mutate } = useMutation({
     mutationFn: markTodoCompletedCall,
