@@ -1,4 +1,3 @@
-import React from "react";
 import TodoContextProvider from "../context/TodoContext";
 import Todo from "../pages/Todo";
 

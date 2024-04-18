@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 import HeroWrapper from "../../layout/HeroWrapper/HeroWrapper";
 import { getAllItems, resetCart } from "../../store/cartSlice";
+import { ProductProps } from "../../propTypes";
 
 const Cart = () => {
   // const { cartProducts, clearCart } = useContext(cartContext);
   const dispatch = useDispatch();
 
   const cartProducts = useSelector(getAllItems);
-  const count = cartProducts.length;
+  const count = cartProducts.products.length;
 
   return (
     <div className="h-[70vh]">
@@ -27,7 +28,8 @@ const Cart = () => {
             </h1>
           </div>
           <HeroWrapper height={80} gap={5}>
-            {cartProducts.map((product) => (
+            {cartProducts?.products.map((product : ProductProps) => (
+              
               <CartCard key={product.id} product={product} />
             ))}
           </HeroWrapper>

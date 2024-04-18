@@ -27,4 +27,17 @@ type HeroWrapperProps = {
     children ?: ReactNode
 }
 
-export {TodoProps, ChildrenProps, TodoContextProps, HeroWrapperProps}
+interface ProductProps {
+    brand: string,
+    id : number,
+    imgUrl : string,
+    price: number,
+    quantity: number,
+    title : string,
+}
+
+interface ProductPropsWrapper{
+    product : ProductProps
+}
+
+export {TodoProps, ChildrenProps, TodoContextProps, HeroWrapperProps, ProductProps, ProductPropsWrapper}

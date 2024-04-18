@@ -3,10 +3,11 @@ import { CiCircleMinus } from "react-icons/ci";
 import { IoMdAddCircle } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { decrementQuantity, incrementQuantity } from "../../store/cartSlice";
+import { ProductPropsWrapper } from "../../propTypes";
 
-const CartCard = ({ product }) => {
+const CartCard = ( {product} : ProductPropsWrapper) => {
   const { id, title, quantity, price, brand, imgUrl } = product;
-
+  // console.log(product);
   const dispatch = useDispatch();
 
   return (

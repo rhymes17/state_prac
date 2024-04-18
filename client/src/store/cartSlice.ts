@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getProducts } from "./asyncThunk";
+import { ProductProps } from "../propTypes";
 
-const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : {
+const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : {
     isLoading: false,
     products: [],
     isError: false,
@@ -14,9 +15,10 @@ const cartSlice = createSlice({
     reducers: {
         addToCart : (state, action) => {
             const {id} = action.payload
-            const existingIndex = state.products.findIndex((pro) => pro.id === id)
-
+            const existingIndex = state.products.findIndex((pro : ProductProps) => pro.id === id)
+            
             if(existingIndex !== -1){
+                console.log("add");
                 state.products[existingIndex].quantity += 1;
             }else{
                 state.products.push(action.payload)
@@ -27,7 +29,7 @@ const cartSlice = createSlice({
         incrementQuantity: (state, action) => {
             const id = action.payload
 
-            const existingIndex = state.products.findIndex((pro) => pro.id === id)
+            const existingIndex = state.products.findIndex((pro : ProductProps) => pro.id === id)
 
             if(existingIndex !== -1){
                 state.products[existingIndex].quantity += 1;
@@ -37,7 +39,7 @@ const cartSlice = createSlice({
         decrementQuantity: (state, action) => {
             const id = action.payload
 
-            const existingIndex = state.products.findIndex((pro) => pro.id === id)
+            const existingIndex = state.products.findIndex((pro : ProductProps) => pro.id === id)
 
             if(existingIndex !== -1){
                 if(state.products[existingIndex].quantity > 1){
@@ -46,7 +48,7 @@ const cartSlice = createSlice({
                     localStorage.setItem("cart", JSON.stringify(state))
                 }
                 else{
-                    state.products = state.products.filter((pro) => pro.id !== id)
+                    state.products = state.products.filter((pro : ProductProps) => pro.id !== id)
                     localStorage.setItem("cart", state)
                     return state;
                 }
@@ -78,7 +80,7 @@ const cartSlice = createSlice({
     }
 })
 
-export const getAllItems = (state) => state.cart
+export const getAllItems = (state : any) => state.cart
 
 export const {addToCart, decrementQuantity, incrementQuantity, resetCart} = cartSlice.actions
 export default cartSlice.reducer
