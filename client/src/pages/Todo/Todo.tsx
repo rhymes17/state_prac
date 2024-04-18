@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { TodoContext } from "../../context/TodoContext";
 import HeroWrapper from "../../layout/HeroWrapper";
 import { BASE_URL } from "../../constants";
-import { TodoProps } from "../../propTypes";
+import { TodoContextProps, TodoProps } from "../../propTypes";
 
 const Todo = () => {
   const {
@@ -16,7 +16,7 @@ const Todo = () => {
     visibleTodos: todos,
     filterVisibleTodos,
     addAllTodos,
-  } = useContext(TodoContext);
+  } = useContext<TodoContextProps>(TodoContext);
 
   const getTodos = async () => {
     try {

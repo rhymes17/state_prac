@@ -21,4 +21,10 @@ interface TodoContextProps{
     filterVisibleTodos : () => void
 }
 
-export {TodoProps, ChildrenProps, TodoContextProps}
+type HeroWrapperProps = {
+    height: number,
+    gap: number,
+    children ?: ReactNode
+}
+
+export {TodoProps, ChildrenProps, TodoContextProps, HeroWrapperProps}

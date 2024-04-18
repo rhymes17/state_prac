@@ -1,4 +1,3 @@
-import React from "react";
 import { CgProfile } from "react-icons/cg";
 import { GoHome } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
