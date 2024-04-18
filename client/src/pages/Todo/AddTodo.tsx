@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { addTodo } from "../../utils/api";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
 const AddTodo = () => {
@@ -8,6 +8,8 @@ const AddTodo = () => {
   const [priority, setPriority] = useState("Low");
 
   const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
 
   const { mutate: addTodoMutate } = useMutation({
     mutationFn: addTodo,

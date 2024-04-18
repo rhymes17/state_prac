@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { TodoContext } from "../../context/TodoContext";
 import HeroWrapper from "../../layout/HeroWrapper";
 import { BASE_URL } from "../../constants";
+import { todoProps } from "../../propTypes";
 
 const Todo = () => {
   const {
@@ -20,7 +21,7 @@ const Todo = () => {
   const getTodos = async () => {
     try {
       const res = await axios.get(`${BASE_URL}`);
-      const todos = res.data.data;
+      const todos : todoProps[] = res.data.data;
       addAllTodos(todos);
       return todos;
     } catch (error) {

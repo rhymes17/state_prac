@@ -16,11 +16,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 //Component imports
 import App from "./App.jsx";
-import Home from "./pages/Home";
+import Home from "./pages/Home/index.js";
 import AddTodo from "./pages/Todo/AddTodo.jsx";
 import store from "./store/store.js";
 import TodoWrapper from "./wrapper/TodoWrapper.jsx";
-import Cart from "./pages/Cart";
+import Cart from "./pages/Cart/index.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,7 +38,7 @@ const router = createBrowserRouter(
 // Client Query
 const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
