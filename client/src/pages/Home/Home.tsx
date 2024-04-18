@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
 import HeroWrapper from "../../layout/HeroWrapper/HeroWrapper";
 import { getAllProducts } from "../../utils/api";
+import { ProductProps } from "../../propTypes";
 
 const Home = () => {
   const {
@@ -34,7 +35,7 @@ const Home = () => {
 
       {/* Render products */}
       <HeroWrapper height={70} gap={8}>
-        {products?.products.map((product) => (
+        {products?.products.map((product : ProductProps) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </HeroWrapper>

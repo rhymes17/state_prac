@@ -30,10 +30,13 @@ type HeroWrapperProps = {
 interface ProductProps {
     brand: string,
     id : number,
-    imgUrl : string,
+    imgUrl ?: string,
     price: number,
     quantity: number,
     title : string,
+    description?: string,
+    category ?: string,
+    images : string[]
 }
 
 interface ProductPropsWrapper{

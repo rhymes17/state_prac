@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios, {AxiosError} from "axios";
+import axios from "axios";
 import { PRODUCTS_URL } from "../../constants";
 
 export const getProducts = createAsyncThunk("getProducts", async() => {
