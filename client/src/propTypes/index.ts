@@ -1,13 +1,13 @@
 import { ReactNode } from "react"
 
 interface TodoProps {
-    completed : boolean,
-    createdAt : Date | string,
+    completed ?: boolean,
+    createdAt ?: Date | string,
     priority: string,
     todo: string,
-    updatedAt: Date | string,
-    _v : number,
-    _id : string,
+    updatedAt?: Date | string,
+    _v ?: number,
+    _id ?: string,
 }
 
 interface ChildrenProps {
@@ -43,4 +43,11 @@ interface ProductPropsWrapper{
     product : ProductProps
 }
 
-export {TodoProps, ChildrenProps, TodoContextProps, HeroWrapperProps, ProductProps, ProductPropsWrapper}
+interface ReduxStateProps{
+    isLoading: boolean,
+    products: ProductProps[],
+    isError : boolean,
+    errorMessage : string,
+}
+
+export {TodoProps, ChildrenProps, TodoContextProps, HeroWrapperProps, ProductProps, ProductPropsWrapper, ReduxStateProps}

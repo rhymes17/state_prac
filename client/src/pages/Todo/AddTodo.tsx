@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { addTodo } from "../../utils/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { TodoProps } from "../../propTypes";
 
 const AddTodo = () => {
   const [todo, setTodo] = useState("");
@@ -20,7 +21,7 @@ const AddTodo = () => {
   });
 
   const handleSubmitTodo = () => {
-    const newTodo = {
+    const newTodo : TodoProps = {
       todo,
       priority,
     };

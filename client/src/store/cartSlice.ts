@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getProducts } from "./asyncThunk";
-import { ProductProps } from "../propTypes";
+import { ProductProps, ReduxStateProps } from "../propTypes";
 
 const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : {
     isLoading: false,
