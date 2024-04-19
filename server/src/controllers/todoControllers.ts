@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler"
-import { Todo } from "../models/todoModel.js"
+import { Todo } from "../models/todoModel"
 
 // @desc    Get all todos
 // @route   GET "/api/todo/"

@@ -1,4 +1,10 @@
-import mongoose from "mongoose"
+import mongoose, {Document, Model} from "mongoose"
+
+interface ITodo extends Document{
+    todo: string;
+    priority: string;
+    completed: boolean;
+}
 
 const todoSchema = new mongoose.Schema({
     todo : {
@@ -18,4 +24,4 @@ const todoSchema = new mongoose.Schema({
     timestamps: true
 })
 
-export const Todo = new mongoose.model("Todo", todoSchema)
+export const Todo : Model<ITodo> = mongoose.model<ITodo>("Todo", todoSchema)
