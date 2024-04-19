@@ -9,7 +9,14 @@ interface ITodoContext  {
   filterVisibleTodos : () => void,
 }
 
-export const TodoContext = createContext<null | ITodoContext>(null);
+export const TodoContext = createContext<ITodoContext>(
+  {
+    allTodos : [],
+    visibleTodos : [],
+    addAllTodos : () => {},
+    filterVisibleTodos : () => {}
+  }
+);
 
 const TodoContextProvider = ({ children } : {children : React.ReactNode}) => {
   const [allTodos, setAllTodos] = useState<ITodo[]>([]);

@@ -1,25 +1,24 @@
-import React from "react";
-import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
 import HeroWrapper from "../../layout/HeroWrapper/HeroWrapper";
-import { getAllProducts } from "../../utils/api";
-import { ProductProps } from "../../propTypes";
+import { IProduct } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../store/asyncThunk";
+import { useEffect } from "react";
+import { getAllProducts } from "../../store/productSlice";
 
 const Home = () => {
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["products"],
-    queryFn: getAllProducts,
-    staleTime: 60 * 10 * 1000,
-  });
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [])
+
+  const {products , isLoading, isError, errorMessage} = useSelector(getAllProducts)
 
   if (isLoading)
     return <h1 className="text-center text-2xl font-bold">Loading...</h1>;
-  if (error) {
-    return <h1>{error.message}</h1>;
+  if (isError) {
+    return <h1>{errorMessage}</h1>;
   }
 
   return (
@@ -35,7 +34,7 @@ const Home = () => {
 
       {/* Render products */}
       <HeroWrapper height={70} gap={8}>
-        {products?.products.map((product : ProductProps) => (
+        {products?.products?.map((product : IProduct) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </HeroWrapper>

@@ -1,10 +1,10 @@
-import { ActionReducerMapBuilder, PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { getProducts } from "./asyncThunk";
-import { CartProduct, IProduct } from "../types";
+import {  PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { CartProduct } from "../types";
+import { RootState } from "./store";
 
 type ReduxState = {
     isLoading : boolean,
-    products : CartProduct[],
+    products : CartProduct[]
     isError : boolean,
     errorMessage : string | null,
 }
@@ -67,27 +67,9 @@ const cartSlice = createSlice({
             return state
         }
     },
-    extraReducers: (builder : ActionReducerMapBuilder<ReduxState>) => {
-        builder.addCase(getProducts.pending, (state) => {
-            state.isLoading = true;
-            state.isError = false;
-            state.errorMessage = "";
-        })
-        .addCase(getProducts.fulfilled, (state, action : PayloadAction<IProduct[]>) => {
-            state.isLoading = false;
-            state.products = action.payload
-            state.isError = false;
-            state.errorMessage = "";
-        })
-        .addCase(getProducts.rejected, (state, action: PayloadAction<string>) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.errorMessage = action.payload;
-        })
-    }
 })
 
-export const getAllItems = (state : any) => state.cart
+export const getAllItems = (state : RootState) => state.cart
 
 export const {addToCart, decrementQuantity, incrementQuantity, resetCart} = cartSlice.actions
 export default cartSlice.reducer

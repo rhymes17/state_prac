@@ -1,20 +1,14 @@
 import axios from "axios"
-import { BASE_URL, PRODUCTS_URL } from "../../constants"
-import { TodoProps } from "../../types";
+import { BASE_URL } from "../../constants"
 
-const addTodo = async(newTodo : TodoProps) => {
-    try {
-        const res = await axios.post(`${BASE_URL}/`, newTodo)
-        return res.data;
-    } catch (error) {
-        return (error as Error).message
-    }
+type newTodo = {
+  todo : string,
+  priority : string
 }
 
-const getAllProducts = async() => {
+const addTodo = async(newTodo : newTodo) => {
     try {
-        const res = await axios.get(`${PRODUCTS_URL}/`)
-        // console.log(res)
+        const res = await axios.post(`${BASE_URL}/`, newTodo)
         return res.data;
     } catch (error) {
         return (error as Error).message
@@ -30,4 +24,4 @@ const markTodoCompletedCall = async (todoId : number) => {
     }
   };
 
-export {addTodo, getAllProducts, markTodoCompletedCall}
+export {addTodo, markTodoCompletedCall}

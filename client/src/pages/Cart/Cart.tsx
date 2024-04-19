@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import HeroWrapper from "../../layout/HeroWrapper/HeroWrapper";
 import { getAllItems, resetCart } from "../../store/cartSlice";
-import { IProduct, ReduxState } from "../../types";
+import { CartProduct, ReduxState } from "../../types";
 
 
 
@@ -29,7 +29,7 @@ const Cart = () => {
             </h1>
           </div>
           <HeroWrapper height={80} gap={5}>
-            {cartProducts?.products.map((product : IProduct) => (
+            {cartProducts?.products.map((product : CartProduct) => (
               
               <CartCard key={product.id} product={product} />
             ))}

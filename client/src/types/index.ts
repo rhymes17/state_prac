@@ -6,7 +6,7 @@ interface ITodo {
     todo: string,
     updatedAt?: Date | string,
     _v ?: number,
-    _id ?: string,
+    _id : number,
 }
 
 interface IProduct {
@@ -33,9 +33,16 @@ interface CartProduct{
 
 type ReduxState = {
     isLoading : boolean,
-    products : IProduct[],
+    products : CartProduct[],
     isError : boolean,
     errorMessage : string | null,
-  }
+}
 
-export type {ITodo,IProduct, ReduxState, CartProduct}
+interface ThunkProducts {
+    products : IProduct[],
+    total : number,
+    skip : number,
+    limit : number
+}
+
+export type {ITodo,IProduct, ReduxState, CartProduct, ThunkProducts}

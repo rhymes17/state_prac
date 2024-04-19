@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import TodoItem from "./TodoItem";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -8,40 +8,47 @@ import { Link } from "react-router-dom";
 import { TodoContext } from "../../context/TodoContext";
 import HeroWrapper from "../../layout/HeroWrapper";
 import { BASE_URL } from "../../constants";
-import { TodoContextProps, TodoProps } from "../../types";
+import {  ITodo } from "../../types";
+
+interface ITodoContext  {
+  allTodos : ITodo[],
+  visibleTodos : ITodo[],
+  addAllTodos : (todos: ITodo[]) => void,
+  filterVisibleTodos : () => void,
+}
 
 const Todo = () => {
   const {
-    allTodos,
     visibleTodos: todos,
     filterVisibleTodos,
     addAllTodos,
-  } = useContext<TodoContextProps>(TodoContext);
+  } = useContext<ITodoContext>(TodoContext);
 
-  const getTodos = async () => {
+  const getTodos = async () : Promise<ITodo[] | string> => {
     try {
       const res = await axios.get(`${BASE_URL}`);
-      const todos : TodoProps[] = res.data.data;
+      const todos : ITodo[] = res.data.data;
       addAllTodos(todos);
       return todos;
-    } catch (error) {
+    } catch (error : any) {
       return error;
     }
   };
 
-  useEffect(() => {
-    filterVisibleTodos();
-  }, [allTodos]);
-
   const {
-    data: todoItems,
+    data : gotAllTodos,
     isLoading,
     error,
   } = useQuery({
     queryKey: ["todos"],
     queryFn: getTodos,
-    // staleTime: 60 * 1000,
+    staleTime: 60 * 1000,  
   });
+
+  useEffect(() => {
+    filterVisibleTodos();
+  }, [gotAllTodos]);
+
 
   if (isLoading) {
     return <h1>Loading...</h1>;

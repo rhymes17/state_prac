@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import { FaRegCircle } from "react-icons/fa";
 import { GoCheckCircleFill } from "react-icons/go";
 import { markTodoCompletedCall } from "../../utils/api";
+import { ITodo } from "../../types";
 
-const TodoItem = ({ todoItem }) => {
+const TodoItem = ({ todoItem  }: {todoItem : ITodo}) => {
   const { _id: id, todo, completed } = todoItem;
 
   const queryClient = useQueryClient();
@@ -16,7 +16,7 @@ const TodoItem = ({ todoItem }) => {
     },
   });
 
-  const markAsCompletedFn = (todoId) => {
+  const markAsCompletedFn = (todoId : number) => {
     mutate(todoId);
   };
 
