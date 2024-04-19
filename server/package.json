@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node build/server.js",
-    "server": "nodemon build/server.js"
+    "server": "nodemon build/server.js",
+    "server:nodemon" : "npx nodemon"
   },
   "name": "server",
   "version": "1.0.0",

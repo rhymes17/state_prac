@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended : true}))
 app.use(cookieParser())
 
 //import Routes
-import todoRoutes from "./routes/todoRoutes.js"
+import todoRoutes from "./routes/todoRoutes"
 
 app.use("/api/todo", todoRoutes)
 

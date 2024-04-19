@@ -4,9 +4,11 @@ dotenv.config()
 import connectDB from "./db/dbConnect"
 import app from "./app"
 
+const PORT = process.env.PORT || 8000
+
 connectDB().then(() => {
-    app.listen(process.env.PORT || 8000, () => {
-        console.log("Server running on port 8000")
+    app.listen(PORT, () => {
+        console.log(`Server running on port: ${PORT}`)
     })
 }).catch((error) => {
     console.log("Error in connecting to the database")
