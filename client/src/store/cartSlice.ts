@@ -1,8 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { getProducts } from "./asyncThunk";
-import { ProductProps, ReduxStateProps } from "../propTypes";
+import { CartProduct, IProduct } from "../types";
 
-const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : {
+type ReduxState = {
+    isLoading : boolean,
+    products : CartProduct[],
+    isError : boolean,
+    errorMessage : string | null,
+}
+
+const initialState : ReduxState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : {
     isLoading: false,
     products: [],
     isError: false,
@@ -13,9 +20,9 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addToCart : (state, action) => {
+        addToCart : (state : ReduxState, action : PayloadAction<CartProduct>) => {
             const {id} = action.payload
-            const existingIndex = state.products.findIndex((pro : ProductProps) => pro.id === id)
+            const existingIndex = state.products.findIndex((pro : CartProduct) => pro.id === id)
             
             if(existingIndex !== -1){
                 console.log("add");
@@ -26,20 +33,20 @@ const cartSlice = createSlice({
 
             localStorage.setItem("cart", JSON.stringify(state))
         },
-        incrementQuantity: (state, action) => {
+        incrementQuantity: (state : ReduxState, action : PayloadAction<number>) => {
             const id = action.payload
 
-            const existingIndex = state.products.findIndex((pro : ProductProps) => pro.id === id)
+            const existingIndex = state.products.findIndex((pro : CartProduct) => pro.id === id)
 
             if(existingIndex !== -1){
                 state.products[existingIndex].quantity += 1;
                 localStorage.setItem("cart", JSON.stringify(state))
             }
         },
-        decrementQuantity: (state, action) => {
+        decrementQuantity: (state : ReduxState, action : PayloadAction<number>) => {
             const id = action.payload
 
-            const existingIndex = state.products.findIndex((pro : ProductProps) => pro.id === id)
+            const existingIndex = state.products.findIndex((pro : CartProduct) => pro.id === id)
 
             if(existingIndex !== -1){
                 if(state.products[existingIndex].quantity > 1){
@@ -48,8 +55,8 @@ const cartSlice = createSlice({
                     localStorage.setItem("cart", JSON.stringify(state))
                 }
                 else{
-                    state.products = state.products.filter((pro : ProductProps) => pro.id !== id)
-                    localStorage.setItem("cart", state)
+                    state.products = state.products.filter((pro : CartProduct) => pro.id !== id)
+                    localStorage.setItem("cart", JSON.stringify(state))
                     return state;
                 }
             }
@@ -60,22 +67,22 @@ const cartSlice = createSlice({
             return state
         }
     },
-    extraReducers: (builder) => {
-        builder.addCase(getProducts.pending, (state, action) => {
+    extraReducers: (builder : ActionReducerMapBuilder<ReduxState>) => {
+        builder.addCase(getProducts.pending, (state) => {
             state.isLoading = true;
             state.isError = false;
-            state.errorMessage = ""
+            state.errorMessage = "";
         })
-        .addCase(getProducts.fulfilled, (state, action) => {
+        .addCase(getProducts.fulfilled, (state, action : PayloadAction<IProduct[]>) => {
             state.isLoading = false;
             state.products = action.payload
             state.isError = false;
-            state.errorMessage = ""
+            state.errorMessage = "";
         })
-        .addCase(getProducts.rejected, (state, action) => {
+        .addCase(getProducts.rejected, (state, action: PayloadAction<string>) => {
             state.isLoading = false;
             state.isError = true;
-            state.errorMessage = action.payload
+            state.errorMessage = action.payload;
         })
     }
 })

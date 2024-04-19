@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { TodoContext } from "../../context/TodoContext";
 import HeroWrapper from "../../layout/HeroWrapper";
 import { BASE_URL } from "../../constants";
-import { TodoContextProps, TodoProps } from "../../propTypes";
+import { TodoContextProps, TodoProps } from "../../types";
 
 const Todo = () => {
   const {

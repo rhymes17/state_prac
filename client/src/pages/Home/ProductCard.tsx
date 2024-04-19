@@ -1,11 +1,10 @@
-import React from "react";
 import { IoBagAdd } from "react-icons/io5";
 
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
-import { ProductPropsWrapper } from "../../propTypes";
+import { IProduct } from "../../types";
 
-const ProductCard = ({ product } : ProductPropsWrapper) => {
+const ProductCard = ({ product } : {product : IProduct}) => {
   // Product data
   const { id, title, price, brand, category, images } = product;
   const imgUrl = images[0];

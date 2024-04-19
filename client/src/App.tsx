@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 
-function App() {
+function App() : JSX.Element {
   return (
     <div className="bg-[#E6E9EE] flex justify-center items-center  h-[100vh] w-full">
       <div className="relative bg-[#F5F8FD] h-[90vh] w-[45%] rounded-2xl mx-auto shadow-2xl">

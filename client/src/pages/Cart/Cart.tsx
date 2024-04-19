@@ -1,4 +1,3 @@
-import React from "react";
 
 import { VscPackage } from "react-icons/vsc";
 import CartCard from "./CartCard";
@@ -6,13 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import HeroWrapper from "../../layout/HeroWrapper/HeroWrapper";
 import { getAllItems, resetCart } from "../../store/cartSlice";
-import { ProductProps } from "../../propTypes";
+import { IProduct, ReduxState } from "../../types";
+
+
 
 const Cart = () => {
   // const { cartProducts, clearCart } = useContext(cartContext);
   const dispatch = useDispatch();
 
-  const cartProducts = useSelector(getAllItems);
+  const cartProducts : ReduxState = useSelector(getAllItems);
   const count = cartProducts.products.length;
 
   return (
@@ -28,7 +29,7 @@ const Cart = () => {
             </h1>
           </div>
           <HeroWrapper height={80} gap={5}>
-            {cartProducts?.products.map((product : ProductProps) => (
+            {cartProducts?.products.map((product : IProduct) => (
               
               <CartCard key={product.id} product={product} />
             ))}

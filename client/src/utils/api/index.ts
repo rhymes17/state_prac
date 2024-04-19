@@ -1,6 +1,6 @@
 import axios from "axios"
 import { BASE_URL, PRODUCTS_URL } from "../../constants"
-import { TodoProps } from "../../propTypes";
+import { TodoProps } from "../../types";
 
 const addTodo = async(newTodo : TodoProps) => {
     try {
