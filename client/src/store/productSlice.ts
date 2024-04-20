@@ -7,7 +7,7 @@ type ProductState = {
     isLoading: boolean,
     products: ThunkProducts,
     isError : boolean,
-    errorMessage : string | null,
+    errorMessage : string,
 }
 
 const initialState : ProductState = {
@@ -38,10 +38,10 @@ const productSlice = createSlice({
             state.products = action.payload;
             state.isError = false;
         })
-        .addCase(getProducts.rejected, (state, action : PayloadAction<string>) => {
+        .addCase(getProducts.rejected, (state, action : PayloadAction<string | undefined>) => {
             state.isLoading = false;
             state.isError = true;
-            state.errorMessage = action.payload
+            state.errorMessage = action.payload || "An unknown error occurred"
         })
     }
 })

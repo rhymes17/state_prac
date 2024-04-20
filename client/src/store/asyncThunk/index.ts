@@ -3,7 +3,7 @@ import axios from "axios";
 import { PRODUCTS_URL } from "../../constants";
 import { ThunkProducts } from "../../types";
 
-export const getProducts : any = createAsyncThunk("getProducts", async(thunkAPI) => {
+export const getProducts = createAsyncThunk<ThunkProducts, void, {rejectValue : string}>("getProducts", async(_,thunkAPI) => {
     try {
         const res= await axios.get<ThunkProducts>(`${PRODUCTS_URL}/`);
         return res.data        

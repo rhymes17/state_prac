@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/asyncThunk";
 import { useEffect } from "react";
 import { getAllProducts } from "../../store/productSlice";
+import { AppDispatch } from "../../store/store";
 
 const Home = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   
   useEffect(() => {
     dispatch(getProducts());
