@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@types/mongoose": "^5.11.97",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -10,11 +11,10 @@
   "scripts": {
     "start": "node build/server.js",
     "server": "nodemon build/server.js",
-    "server:nodemon" : "npx nodemon"
+    "server:nodemon": "npx nodemon"
   },
   "name": "server",
   "version": "1.0.0",
-
   "main": "server.ts",
   "keywords": [],
   "author": "",

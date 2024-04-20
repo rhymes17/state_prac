@@ -1,9 +1,10 @@
 import asyncHandler from "express-async-handler"
 import { Todo } from "../models/todoModel"
+import {Request, Response} from "express"
 
 // @desc    Get all todos
 // @route   GET "/api/todo/"
-const getAllTodos = asyncHandler(async (req, res) => {
+const getAllTodos = asyncHandler(async (req : Request, res : Response) : Promise<void> => {
     const getTodos = await Todo.find().sort({ createdAt : -1 })
 
     if(getTodos){
@@ -15,8 +16,9 @@ const getAllTodos = asyncHandler(async (req, res) => {
 
 // @desc    Create a new todo
 // @route   POST "/api/todo/"
-const createTodo = asyncHandler(async (req, res) => {
-    const {todo, priority} = req.body
+const createTodo = asyncHandler(async (req : Request, res : Response) => {
+    
+    const {todo, priority} : {todo: string, priority : string} = req.body
 
     if(!todo){
         res.status(400).json({error: "All fields are required!"})
@@ -37,11 +39,11 @@ const createTodo = asyncHandler(async (req, res) => {
 
 // @desc    Mark as complete
 // @route   PATCH "/api/todo/:id"
-const markCompleted = asyncHandler(async (req, res) => {
+const markCompleted = asyncHandler(async (req : Request, res : Response) => {
     const {id} = req.params
 
     const exisitingTodo = await Todo.findById(id)
-
+ 
     if(!exisitingTodo){
         res.status(400).json({error: "Todo does not exists!"})
         return;
