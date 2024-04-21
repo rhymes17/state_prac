@@ -5,11 +5,17 @@ import { ThunkProducts } from "../../types";
 
 export const getProducts = createAsyncThunk<ThunkProducts, void, {rejectValue : string}>("getProducts", async(_,thunkAPI) => {
     try {
-        const res= await axios.get<ThunkProducts>(`${PRODUCTS_URL}/`);
+        const res = await axios.get<ThunkProducts>(`${PRODUCTS_URL}/`);
+        if (!res?.data) {
+            throw new Error("Somethiong went wrong");
+        }
         return res.data        
     } catch (error : any) {
-        const message : string = (error.response && error.response.data && error.response.data.message || error.message || error.toString())
-        return thunkAPI.rejectWithValue(message);
+        let message: string = "Somethiong went wrong";
+        if (error) {
+            message  = (error.response && error.response.data && error.response.data.message || error.message || error.toString());
+        }
+        return thunkAPI.rejectWithValue(message || "Somethiong went wrong");
     }
 })
 

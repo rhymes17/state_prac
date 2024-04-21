@@ -38,10 +38,10 @@ const productSlice = createSlice({
             state.products = action.payload;
             state.isError = false;
         })
-        .addCase(getProducts.rejected, (state, action : PayloadAction<string | undefined>) => {
+        .addCase(getProducts.rejected, (state, action?: PayloadAction<string | undefined>) => {
             state.isLoading = false;
             state.isError = true;
-            state.errorMessage = action.payload || "An unknown error occurred"
+            state.errorMessage = action?.payload || "An unknown error occurred"
         })
     }
 })
